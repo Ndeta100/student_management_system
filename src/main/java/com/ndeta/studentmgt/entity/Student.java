@@ -1,14 +1,22 @@
 package com.ndeta.studentmgt.entity;
 
+import jakarta.persistence.*;
+
 import java.time.LocalDate;
 import java.util.UUID;
-
+@Entity
+@Table(name = "student")
 public class Student {
-    private  long id;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
+    private  Long id;
+    @Column(name = "name" ,nullable = false)
     private String name;
+    @Column(name = "birth_date",nullable = false)
     private LocalDate birthDate;
 
-    public long getId() {
+    public Long getId() {
         return id;
     }
 
