@@ -1,6 +1,8 @@
 package com.ndeta.studentmgt;
 
+import com.ndeta.studentmgt.entity.Course;
 import com.ndeta.studentmgt.entity.Student;
+import com.ndeta.studentmgt.repository.CourseRepository;
 import com.ndeta.studentmgt.repository.StudentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
@@ -15,6 +17,8 @@ import java.time.LocalDate;
 public class StudentmgtApplication implements CommandLineRunner {
     @Autowired
     StudentRepository studentRepository;
+    @Autowired
+    CourseRepository courseRepository;
     public static void main(String[] args) {
         SpringApplication.run(StudentmgtApplication.class, args);
     }
@@ -31,6 +35,17 @@ public class StudentmgtApplication implements CommandLineRunner {
         };
         for (int i = 0; i <students.length; i++) {
             studentRepository.save(students[i]);
+        }
+        Course[] courses = new Course[] {
+                new Course("Charms", "CH104", "In this class, you will learn spells concerned with giving an object new and unexpected properties."),
+                new Course("Defence Against the Dark Arts", "DADA", "In this class, you will learn defensive techniques against the dark arts."),
+                new Course("Herbology", "HB311", "In this class, you will learn the study of magical plants and how to take care of, utilise and combat them."),
+                new Course("History of Magic", "HIS393", "In this class, you will learn about significant events in wizarding history."),
+                new Course("Potions", "POT102", "In this class, you will learn correct mixing and stirring of ingredients to create mixtures with magical effects."),
+                new Course("Transfiguration", "TR442", "In this class, you will learn the art of changing the form or appearance of an object.")
+        };
+        for (int i = 0; i <courses.length ; i++) {
+            courseRepository.save(courses[i]);
         }
     }
 }
