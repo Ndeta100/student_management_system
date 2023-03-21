@@ -1,18 +1,30 @@
 package com.ndeta.studentmgt.service;
 
 import com.ndeta.studentmgt.entity.Grade;
+import com.ndeta.studentmgt.entity.Student;
+import com.ndeta.studentmgt.repository.GradeRepository;
+import com.ndeta.studentmgt.repository.StudentRepository;
+import lombok.AllArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
-
+@AllArgsConstructor
+@Service
 public class GradeServiceImpl implements GradeService{
+
+    GradeRepository gradeRepository;
+    StudentRepository studentRepository;
     @Override
     public Grade getGrade(Long studentId, Long courseId) {
-        return null;
+        return gradeRepository.findByStudentId(studentId);
     }
 
     @Override
     public Grade saveGrade(Grade grade, Long studentId, Long courseId) {
-        return null;
+        Student student=studentRepository.findById(studentId).get();
+        grade.setStudent(student);
+        return gradeRepository.save(grade);
     }
 
     @Override

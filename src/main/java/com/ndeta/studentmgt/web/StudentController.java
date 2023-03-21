@@ -2,6 +2,7 @@ package com.ndeta.studentmgt.web;
 
 import com.ndeta.studentmgt.entity.Student;
 import com.ndeta.studentmgt.service.StudentService;
+import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -10,9 +11,9 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
+@AllArgsConstructor
 @RequestMapping("/student")
 public class StudentController {
-    @Autowired
     StudentService studentService;
 @GetMapping("/{id}")
 public ResponseEntity<Student> getStudent (@PathVariable Long id){
