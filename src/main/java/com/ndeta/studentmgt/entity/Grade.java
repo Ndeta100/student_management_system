@@ -1,23 +1,27 @@
 package com.ndeta.studentmgt.entity;
 
+import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
+@Getter
+@Setter
+@AllArgsConstructor
+@NoArgsConstructor
+@Entity
+@Table(name = "grade")
 public class Grade {
-    private  long id;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
+    private  Long id;
+    @Column(name = "score", nullable = false)
     private  String score;
 
-    public long getId() {
-        return id;
-    }
-
-    public void setId(long id) {
-        this.id = id;
-    }
-
-    public String getScore() {
-        return score;
-    }
-
-    public void setScore(String score) {
-        this.score = score;
-    }
+    @ManyToOne(optional = false)
+    @JoinColumn(name = "student_id",referencedColumnName = "id")
+   private Student student;
 }
 

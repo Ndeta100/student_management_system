@@ -1,15 +1,21 @@
 package com.ndeta.studentmgt.service;
 
+import com.ndeta.studentmgt.entity.Grade;
 import com.ndeta.studentmgt.entity.Student;
+import com.ndeta.studentmgt.repository.GradeRepository;
 import com.ndeta.studentmgt.repository.StudentRepository;
+import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+@AllArgsConstructor
 @Service
 public class StudentServiceImpl implements  StudentService{
-    @Autowired
+
     StudentRepository studentRepository;
+    GradeRepository gradeRepository;
+
     @Override
     public Student getStudent(Long id) {
         return studentRepository.findById(id).get();
@@ -29,4 +35,6 @@ public class StudentServiceImpl implements  StudentService{
     public List<Student> getStudents() {
         return (List<Student>) studentRepository.findAll();
     }
+
+
 }

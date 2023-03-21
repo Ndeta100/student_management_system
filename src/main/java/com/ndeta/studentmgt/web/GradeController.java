@@ -1,6 +1,9 @@
 package com.ndeta.studentmgt.web;
 
 import com.ndeta.studentmgt.entity.Grade;
+import com.ndeta.studentmgt.service.GradeService;
+import lombok.AllArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -8,18 +11,22 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
+@AllArgsConstructor
 @RequestMapping("/grade")
 public class GradeController {
+
+    GradeService gradeService;
 
     @GetMapping("/student/{studentId}/course/{courseId}")
     public ResponseEntity<Grade>getGrade
             (@PathVariable Long studentId, @PathVariable Long courseId){
-        return new ResponseEntity<>(HttpStatus.OK);
+        return new ResponseEntity<>(gradeService.getGrade(studentId,courseId),HttpStatus.OK);
     }
     @PostMapping("/student/{studentId}/course/{courseId}")
     public ResponseEntity<Grade> saveGrade(@RequestBody Grade grade, @PathVariable
                                            Long studentId, @PathVariable Long courseId){
-        return new ResponseEntity<>(grade, HttpStatus.CREATED);
+        return new ResponseEntity<>(gradeService.saveGrade(grade,studentId,courseId)
+                , HttpStatus.CREATED);
     }
     @PutMapping("/student/{studentId}/course/{courseId}")
     public ResponseEntity<Grade> updateGrade(@RequestBody Grade grade, @PathVariable Long studentId,
