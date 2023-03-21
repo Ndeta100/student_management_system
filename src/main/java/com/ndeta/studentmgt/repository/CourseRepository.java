@@ -1,4 +1,7 @@
 package com.ndeta.studentmgt.repository;
 
-public class CourseRepository {
+import com.ndeta.studentmgt.entity.Course;
+import org.springframework.data.repository.CrudRepository;
+
+public interface CourseRepository extends CrudRepository<Course, Long> {
 }
