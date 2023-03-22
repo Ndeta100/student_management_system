@@ -3,7 +3,6 @@ package com.ndeta.studentmgt.web;
 import com.ndeta.studentmgt.entity.Grade;
 import com.ndeta.studentmgt.service.GradeService;
 import lombok.AllArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
