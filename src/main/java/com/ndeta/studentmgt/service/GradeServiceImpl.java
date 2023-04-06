@@ -4,6 +4,7 @@ import com.ndeta.studentmgt.entity.Course;
 import com.ndeta.studentmgt.entity.Grade;
 import com.ndeta.studentmgt.entity.Student;
 import com.ndeta.studentmgt.exception.GradeNotFoundException;
+import com.ndeta.studentmgt.exception.StudentNotEnrolledException;
 import com.ndeta.studentmgt.repository.CourseRepository;
 import com.ndeta.studentmgt.repository.GradeRepository;
 import com.ndeta.studentmgt.repository.StudentRepository;
@@ -36,6 +37,8 @@ public class GradeServiceImpl implements GradeService{
                 .unwrapStudent(studentRepository.findById(studentId), studentId);
         Course course=CourseServiceImpl
                 .unwrapCourse(courseRepository.findById(courseId), courseId);
+        if(!student.getCourses()
+                .contains(course)) throw new StudentNotEnrolledException(studentId,courseId);
         grade.setStudent(student);
         grade.setCourse(course);
         return gradeRepository.save(grade);
