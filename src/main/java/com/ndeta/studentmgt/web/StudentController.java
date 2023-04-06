@@ -1,5 +1,6 @@
 package com.ndeta.studentmgt.web;
 
+import com.ndeta.studentmgt.entity.Course;
 import com.ndeta.studentmgt.entity.Student;
 import com.ndeta.studentmgt.service.StudentService;
 import lombok.AllArgsConstructor;
@@ -9,6 +10,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Set;
 
 @RestController
 @AllArgsConstructor
@@ -32,5 +34,9 @@ public ResponseEntity<Student> saveStudent (@RequestBody Student student){
 @GetMapping("/all")
     public  ResponseEntity<List<Student>>getStudents(){
     return new ResponseEntity<>(studentService.getStudents(),HttpStatus.OK);
+}
+@GetMapping("/{id}/courses")
+    public ResponseEntity<Set<Course>>getEnrolledCourses(@PathVariable Long id){
+    return new ResponseEntity<>(studentService.getEnrolledCourses(id),HttpStatus.OK);
 }
 }
